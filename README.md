@@ -40,10 +40,10 @@ Parameters
 MergeText -dir:C:\Notes -match:*.txt -output:merged_notes.txt
 
 2. Merge all .cs files from multiple directories to console
-MergeText -dir:src;tests -match:*.cs
+MergeText -dir:"src;tests" -match:*.cs
 
 3. Mix multiple match patterns
-MergeText -dir:Docs -match:*.md,*.txt -output:all_docs.txt
+MergeText -dir:Docs -match:""*.md,*.txt" -output:all_docs.txt
 
 📦 Output
 
