@@ -22,8 +22,11 @@ MergeText -dir:<path1>[,<path2>,...] -match:<pattern1>[,<pattern2>,...] [-output
 Parameters
 Argument	Description
 -dir:	One or more directories to search, separated by commas.
+
 -match:	One or more wildcard patterns for matching files (e.g. *.txt, *.cs).
+
 -output:	Optional. Path to the merged output file. If omitted, output is written to the console (stdout).
+
 
 
 🧰 Examples
