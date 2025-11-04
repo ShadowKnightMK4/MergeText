@@ -8,6 +8,8 @@ It supports directory scanning, wildcard-based file matching, and efficient chun
 The original objective of the tool was I wanted to merge a multi file Visual Studio Solution to a single file, 
 labled for easy LLM evaluation.
 
+Important! This utility does *not* care of how the input file is encoded. It's copied as is.
+
 🧩 Features
 
 Merge multiple files into one.
@@ -55,6 +57,4 @@ Uses 5 KB chunks to efficiently read and write large files.
 
 Displays total bytes and kilobytes written after completion.
 
-Important! This utility assumes encoding is identicle and does not do 
-byte translates. To put it another way is you point it at Unicode and ANSI,
-your final file will contain Unicode and Ansi.
+Important! This utility does *not* care of how the input file is encoded. It's copied as is.
