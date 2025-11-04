@@ -6,17 +6,25 @@ using System.Threading.Tasks;
 
 namespace MergeText
 {
-    internal class WildcardChecking
+    public class WildcardChecking
     {
-            List<string> Wildcards = new();
+        #region stats
+        public int WildcardCount
+        {
+            get
+            {
+                return Wildcards.Count;
+            }
+        }
+        #endregion
+        List<string> Wildcards = new();
             /// <summary>
             /// Adds dir if it exists
             /// </summary>
             /// <param name="path"></param>
             public void AddWildcard(string pattern)
             {
-                Wildcards.
-                Add(pattern);
+                Wildcards.Add(pattern);
             }
 
             public void AddWildcardRange(string pattern)

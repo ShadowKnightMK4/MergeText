@@ -29,7 +29,7 @@ Parameters
 
 | Argument | Description |
 |-----------|-------------|
-| `-dir:` | One or more directories to search. If using multiple directories, quote it and use comma or semi-colon |
+| `-dir:` | One or more directories to search. If using multiple directories, quote it and use comma or semi-colon. IMPORTANT if folders have comma in name *use semi-colon* |
 | `-match:` | One or more wildcard patterns for matching files (e.g. `*.txt`, `*.cs`). |
 | `-output:` | Optional. Path to the merged output file. If omitted, output is written to the console (stdout). |
 
@@ -56,5 +56,6 @@ Each file in the merged output is prefixed with a comment line:
 Uses 5 KB chunks to efficiently read and write large files.
 
 Displays total bytes and kilobytes written after completion.
+Displays list of folders passed it did not have access too.
 
 Important! This utility does *not* care of how the input file is encoded. It's copied as is.

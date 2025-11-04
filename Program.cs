@@ -48,9 +48,51 @@ namespace MergeText
         }
         static MergeText.WildcardChecking Patterns = new();
         static SourceDir SearchThese = new();
+        static IList<string> RejectedPaths = new List<string>();
         static FileStream Output=null;
+
+        static void NoArgs()
+        {
+            const string quick_readme = $@"MergeText [arguments]
+
+Parameters
+
+| Argument | Description |
+|-----------|-------------|
+| `-dir:` | One or more directories to search. If using multiple directories, quote it and use comma or semi-colon.  |
+| `-match:` | One or more wildcard patterns for matching files (e.g. `*.txt`, `*.cs`). |
+| `-output:` | Optional. Path to the merged output file. If omitted, output is written to the console (stdout). |
+
+
+IMPORTANT if folders have comma in name *use semi-colon* when passing them with -dir otherwise it's likely parsing will break.
+
+## Examples
+1. Merge all .txt files from a folder into one file
+MergeText -dir:C:\Notes -match:*.txt -output:merged_notes.txt
+
+2. Merge all .cs files from multiple directories to console
+MergeText -dir:""src;tests"" -match:*.cs
+
+3. Mix multiple match patterns
+MergeText -dir:Docs -match:""""*.md,*.txt"" -output:all_docs.txt
+
+## Output
+
+Important! This utility does *not* care of how the input file is encoded. It's copied as is.
+Displays list of folders passed it that it did not have access at the top.
+Each file in the merged output is prefixed with a comment line before it's contents:
+
+/*  Sourced from C:\Path\To\File.txt */
+";
+            Console.WriteLine(quick_readme);
+        }
         static void Main(string[] args)
         {
+            if (args.Length == 0)
+            {
+                NoArgs();
+                return;
+            }
             try
             {
 
@@ -60,7 +102,7 @@ namespace MergeText
                     if (args[i].StartsWith("-dir:"))
                     {
                         string pos = args[i].Substring("-dir:".Length);
-                        SearchThese.AddDirRange(pos);
+                        SearchThese.AddDirRange(pos, out RejectedPaths);
                         continue;
                     }
                     if (args[i].StartsWith("-match:"))
@@ -78,7 +120,13 @@ namespace MergeText
 
                 }
 
-
+                if (RejectedPaths.Count != 0)
+                {
+                    for (int i =0; i < RejectedPaths.Count; i++) 
+                    {
+                        Console.WriteLine($"Warning: {RejectedPaths[i]} doesn't exist or isn't accessable for MergeText. ");
+                    }
+                }
                 var results = Patterns.GetTargets(SearchThese, false);
                 for (int i = 0; i < results.Count; i++)
                 {
@@ -112,6 +160,7 @@ namespace MergeText
                 Output?.Dispose();
             }
             Console.Write($"{BytesWrote} bytes or {BytesWrote / 1024} KB were written to ");
+            
             if (Output is null)
             {
                 Console.WriteLine("Console Window (STDOUT)");
@@ -119,6 +168,10 @@ namespace MergeText
             else
             {
                 Console.WriteLine(Output.Name);
+            }
+            if (RejectedPaths.Count != 0)
+            {
+                Console.WriteLine($"{RejectedPaths.Count} paths set as input were not accessible to MergeText;");
             }
         }
     }

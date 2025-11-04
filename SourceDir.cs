@@ -9,6 +9,16 @@ namespace MergeText
 {
     public class SourceDir
     {
+        #region properties to do
+        public int PathCount
+        {
+            get
+            {
+                return Paths.Count;
+            }
+        }
+
+        #endregion
         List<DirectoryInfo> Paths = new();
         /// <summary>
         /// Adds dir if it exists
@@ -27,7 +37,7 @@ namespace MergeText
             }
         }
 
-        public void AddDirRange(string path)
+        internal void AddDireRangeCommon(string path, out IList<string> Rejects, out IList<DirectoryInfo> Added)
         {
             string path_sel;
             if (path.Contains(";"))
@@ -42,6 +52,10 @@ namespace MergeText
             {
                 path_sel = null;
             }
+            Rejects = new List<string>();
+            Added = new List<DirectoryInfo>();
+  
+
 
             if (path_sel != null)
             {
@@ -53,15 +67,40 @@ namespace MergeText
                 var spl = path.Split(path_sel, StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
                 foreach (var item in spl)
                 {
-                    AddDir(item);
+                    try
+                    {
+                        AddDir(item);
+                        Added.Add(new DirectoryInfo(item));
+                    }
+                    catch (DirectoryNotFoundException e)
+                    {
+                        Rejects.Add(item);
+                    }
                 }
                 return;
 
             }
             else
             {
-                AddDir(path);
+
+                try
+                {
+                    AddDir(path);
+                    Added.Add(new DirectoryInfo(path));
+                }
+                catch (DirectoryNotFoundException e)
+                {
+                    Rejects.Add(path);
+                }
             }
+        }
+        public void AddDirRange(string path, out IList<string> Rejects)
+        {
+            this.AddDireRangeCommon(path, out Rejects, out _);
+        }
+        public void AddDirRange(string path)
+        {
+            this.AddDireRangeCommon(path, out _, out _);
 
         }
 
