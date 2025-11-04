@@ -29,7 +29,7 @@ Parameters
 
 | Argument | Description |
 |-----------|-------------|
-| `-dir:` | One or more directories to search, separated by commas. |
+| `-dir:` | One or more directories to search. If using multiple directories, quote it and use comma or semi-colon |
 | `-match:` | One or more wildcard patterns for matching files (e.g. `*.txt`, `*.cs`). |
 | `-output:` | Optional. Path to the merged output file. If omitted, output is written to the console (stdout). |
 
@@ -40,7 +40,7 @@ Parameters
 MergeText -dir:C:\Notes -match:*.txt -output:merged_notes.txt
 
 2. Merge all .cs files from multiple directories to console
-MergeText -dir:src,tests -match:*.cs
+MergeText -dir:src;tests -match:*.cs
 
 3. Mix multiple match patterns
 MergeText -dir:Docs -match:*.md,*.txt -output:all_docs.txt

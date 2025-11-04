@@ -2,7 +2,7 @@
   "profiles": {
     "MergeText": {
       "commandName": "Project",
-      "commandLineArgs": "\"skip\" \"-dir:C:\\Users\\Thoma\\source\\repos\\ProjectJerry\" \"-match:*.cs\" \"-output:C:\\Euphoria\\Jerry11032025.txt\""
+      "commandLineArgs": "\"-dir:C:\\Users\\Thoma\\source\\repos\\ProjectJerry\" \"-match:*.cs\" \"-output:C:\\Euphoria\\Jerry11032025.txt\""
     }
   }
 }

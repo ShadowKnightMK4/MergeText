@@ -29,21 +29,39 @@ namespace MergeText
 
         public void AddDirRange(string path)
         {
+            string path_sel;
             if (path.Contains(";"))
+            {
+                path_sel = ";";
+            }
+            else if (path.Contains(","))
+            {
+                path_sel = ",";
+            }
+            else
+            {
+                path_sel = null;
+            }
+
+            if (path_sel != null)
             {
                 if (path.StartsWith("\""))
                     path = path.Substring(1);
                 if (path.EndsWith("\""))
                     path = path.Substring(0, path.Length - 1);
 
-                var spl = path.Split(";", StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
+                var spl = path.Split(path_sel, StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
                 foreach (var item in spl)
                 {
                     AddDir(item);
                 }
                 return;
+
             }
-            AddDir(path);
+            else
+            {
+                AddDir(path);
+            }
 
         }
 
