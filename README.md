@@ -4,6 +4,10 @@ MergeText
 MergeText is a lightweight C# command-line tool that merges the contents of multiple text files into a single output stream or file.
 It supports directory scanning, wildcard-based file matching, and efficient chunked reading/writing to handle large files.
 
+
+The original objective of the tool was I wanted to merge a multi file Visual Studio Solution to a single file, 
+labled for easy LLM evaluation.
+
 🧩 Features
 
 Merge multiple files into one.
