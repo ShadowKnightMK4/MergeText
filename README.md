@@ -17,15 +17,15 @@ Output to a file or to standard output (console).
 Efficient chunk-based streaming (5 KB chunks).
 
 ⚙️ Usage
-MergeText -dir:<path1>[,<path2>,...] -match:<pattern1>[,<pattern2>,...] [-output:<file>]
+MergeText [arguments]
 
 Parameters
-Argument	Description
--dir:	One or more directories to search, separated by commas.
 
--match:	One or more wildcard patterns for matching files (e.g. *.txt, *.cs).
-
--output:	Optional. Path to the merged output file. If omitted, output is written to the console (stdout).
+--------------------
+|Argument |	Description|
+|-dir:|	One or more directories to search, separated by commas.|
+|-match:|	One or more wildcard patterns for matching files (e.g. *.txt, *.cs).|
+|-output:|	Optional. Path to the merged output file. If omitted, output is written to the console (stdout).|
 
 
 
