@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MergeText;
 using Microsoft.VisualBasic;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace UnitTests
 {
     [TestClass]

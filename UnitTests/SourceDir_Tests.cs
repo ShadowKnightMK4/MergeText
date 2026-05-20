@@ -1,4 +1,5 @@
 ﻿using MergeText;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace UnitTests
 {

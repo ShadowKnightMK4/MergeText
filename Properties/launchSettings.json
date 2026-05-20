@@ -2,7 +2,7 @@
   "profiles": {
     "MergeText": {
       "commandName": "Project",
-      "commandLineArgs": "-dir:\"C:\\Users\\Thoma\\source\\repos\\ProjectJerry\" -output:C:\\Euphoria\\Jerry.txt -match:\"*.cs\""
+      "commandLineArgs": "-dir:\"C:\\Users\\Thoma\\source\\repos\\ButlerSDKPreview1-GoldSource\" -output:C:\\Euphoria\\ButlerSDK.15.5.26.txt -match:\"*.cs\" "
     }
   }
 }
